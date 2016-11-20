@@ -1,0 +1,27 @@
+{
+  "name": "sdl2",
+  "version": "2.0.5",
+  "description": "PackageJson version of SDL2.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reasonml/SDL-mirror.git"
+  },
+  "keywords": [
+    "sdl",
+    "sdl2"
+  ],
+  "author": "",
+  "license": "Zlib",
+  "bugs": {
+    "url": "https://github.com/reasonml/SDL-mirror/issues"
+  },
+  "homepage": "https://github.com/reasonml/SDL-mirror#readme"
+}
