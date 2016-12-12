@@ -24,7 +24,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "eval $(dependencyEnv) && ./configure && make",
+    "postinstall": "eval $(dependencyEnv) && ./configure --prefix=$(pwd) --libdir=$(pwd)/build && make",
     "env": "eval $(dependencyEnv) && env"
   },
   "keywords": [
