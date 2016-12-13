@@ -12,4 +12,4 @@ Requires:
 Conflicts:
 Libs: -L${libdir} @SDL_RLD_FLAGS@ @SDL_LIBS@
 Libs.private: @SDL_STATIC_LIBS@
-Cflags: -I${includedir} @SDL_CFLAGS@
+Cflags: -I${includedir}/SDL2 @SDL_CFLAGS@
