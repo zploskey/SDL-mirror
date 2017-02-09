@@ -9,13 +9,12 @@
   },
   "esy": {
     "build": ["./configure --prefix=$cur__lib --libdir=$cur__lib && make && make install"],
-    "exportedEnvVars": {
+    "exportedEnv": {
       "PKG_CONFIG_PATH": {
         "scope": "global",
         "val": "$sdl2__lib/pkgconfig:$PKG_CONFIG_PATH"
       }
-    },
-    "buildsInSource": true
+    }
   },
   "repository": {
     "type": "git",
