@@ -8,15 +8,14 @@
     "test": "test"
   },
   "esy": {
-    "build": ["./configure --prefix=$(pwd) --libdir=$(pwd) && make && make install"],
+    "build": ["./configure --prefix=$cur__lib --libdir=$cur__lib && make && make install"],
     "exportedEnvVars": {
       "PKG_CONFIG_PATH": {
-        "global": true,
-        "resolveAsRelativePath": true,
-        "globalCollisionBehavior": "joinPath",
-        "val": "."
+        "scope": "global",
+        "val": "$sdl2__lib:$PKG_CONFIG_PATH"
       }
-    }
+    },
+    "buildsInSource": true
   },
   "repository": {
     "type": "git",
