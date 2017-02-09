@@ -7,25 +7,20 @@
     "doc": "docs",
     "test": "test"
   },
-  "dependencies": {
-    "dependency-env": "https://github.com/npm-ml/dependency-env.git"
-  },
-  "exportedEnvVars": {
-    "PKG_CONFIG_PATH": {
-      "global": true,
-      "resolveAsRelativePath": true,
-      "globalCollisionBehavior": "joinPath",
-      "val": "."
+  "esy": {
+    "build": ["./configure --prefix=$(pwd) --libdir=$(pwd) && make && make install"],
+    "exportedEnvVars": {
+      "PKG_CONFIG_PATH": {
+        "global": true,
+        "resolveAsRelativePath": true,
+        "globalCollisionBehavior": "joinPath",
+        "val": "."
+      }
     }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reasonml/SDL-mirror.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "eval $(dependencyEnv) && ./configure --prefix=$(pwd) --libdir=$(pwd) && make && make install",
-    "env": "eval $(dependencyEnv) && env"
   },
   "keywords": [
     "sdl",
@@ -34,7 +29,7 @@
   "author": "",
   "license": "Zlib",
   "bugs": {
-    "url": "https://github.com/reasonml/SDL-mirror/issues"
+    "url": "https://github.com/bsansouci/SDL-mirror/issues"
   },
-  "homepage": "https://github.com/reasonml/SDL-mirror#readme"
+  "homepage": "https://github.com/bsansouci/SDL-mirror#readme"
 }
