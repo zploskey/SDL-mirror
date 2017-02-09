@@ -12,7 +12,7 @@
     "exportedEnvVars": {
       "PKG_CONFIG_PATH": {
         "scope": "global",
-        "val": "$sdl2__lib:$PKG_CONFIG_PATH"
+        "val": "$sdl2__lib/pkgconfig:$PKG_CONFIG_PATH"
       }
     },
     "buildsInSource": true
