@@ -7,24 +7,13 @@
     "doc": "docs",
     "test": "test"
   },
-  "dependencies": {
-    "dependency-env": "https://github.com/npm-ml/dependency-env.git"
-  },
-  "exportedEnvVars": {
-    "PKG_CONFIG_PATH": {
-      "global": true,
-      "resolveAsRelativePath": true,
-      "globalCollisionBehavior": "joinPath",
-      "val": "."
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reasonml/SDL-mirror.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "eval $(dependencyEnv) && ./configure --prefix=$(pwd) --libdir=$(pwd) && make && make install",
+    "postinstall": "./configure --prefix=$(pwd) --libdir=$(pwd) && make && make install && node postinstall.js",
     "env": "eval $(dependencyEnv) && env"
   },
   "keywords": [
