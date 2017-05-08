@@ -13,8 +13,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./configure --prefix=$(pwd) --libdir=$(pwd) && make && make install && node postinstall.js",
-    "env": "eval $(dependencyEnv) && env"
+    "postinstall": "./configure --prefix=$(pwd) --libdir=$(pwd) && make && make install && node postinstall.js"
   },
   "keywords": [
     "sdl",
