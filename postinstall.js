@@ -26,7 +26,8 @@ if (process.platform === 'darwin') { // OSX
 var bsconfigjson = `{
   "name": "sdl2",
   "sources": "fake_src",
-  "c_linker_flags": ["-L${__dirname}", ${platformspecificargs}]
+  "c_linker_flags": ["-L${__dirname}", ${platformspecificargs}],
+  "allowed-build-kinds": ["bytecode", "native"],
 }`;
 
 require('fs').writeFileSync(j(__dirname, 'bsconfig.json'), bsconfigjson);
