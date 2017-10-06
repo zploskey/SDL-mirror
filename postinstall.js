@@ -26,7 +26,7 @@ if (process.platform === 'darwin') { // OSX
 var bsconfigjson = `{
   "name": "sdl2",
   "sources": "fake_src",
-  "c_linker_flags": ["-L${__dirname}", ${platformspecificargs}],
+  "c-linker-flags": ["-L${__dirname}", ${platformspecificargs}],
   "allowed-build-kinds": ["bytecode", "native"],
 }`;
 
