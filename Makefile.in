@@ -123,7 +123,7 @@ LT_RELEASE  = @LT_RELEASE@
 LT_REVISION = @LT_REVISION@
 LT_LDFLAGS  = -no-undefined -rpath $(DESTDIR)$(libdir) -release $(LT_RELEASE) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
 
-all: $(srcdir)/configure Makefile $(objects) $(objects)/$(TARGET) $(objects)/$(SDLMAIN_TARGET) $(objects)/$(SDLTEST_TARGET)
+all: $(srcdir)/configure Makefile $(objects) $(objects)/$(TARGET)
 
 $(srcdir)/configure: $(srcdir)/configure.in
 	@echo "Warning, configure.in is out of date"
@@ -146,13 +146,13 @@ update-revision:
 $(objects)/$(TARGET): $(GEN_HEADERS) $(GEN_OBJECTS) $(OBJECTS) $(VERSION_OBJECTS)
 	$(RUN_CMD_LTLINK)$(LIBTOOL) --tag=CC --mode=link $(CC) -o $@ $(OBJECTS) $(GEN_OBJECTS) $(VERSION_OBJECTS) $(LDFLAGS) $(EXTRA_LDFLAGS) $(LT_LDFLAGS)
 
-$(objects)/$(SDLMAIN_TARGET): $(SDLMAIN_OBJECTS)
-	$(RUN_CMD_AR)$(AR) cru $@ $(SDLMAIN_OBJECTS)
-	$(RUN_CMD_RANLIB)$(RANLIB) $@
+# $(objects)/$(SDLMAIN_TARGET): $(SDLMAIN_OBJECTS)
+#	$(RUN_CMD_AR)$(AR) cru $@ $(SDLMAIN_OBJECTS)
+#	$(RUN_CMD_RANLIB)$(RANLIB) $@
 
-$(objects)/$(SDLTEST_TARGET): $(SDLTEST_OBJECTS)
-	$(RUN_CMD_AR)$(AR) cru $@ $(SDLTEST_OBJECTS)
-	$(RUN_CMD_RANLIB)$(RANLIB) $@
+# $(objects)/$(SDLTEST_TARGET): $(SDLTEST_OBJECTS)
+#	$(RUN_CMD_AR)$(AR) cru $@ $(SDLTEST_OBJECTS)
+#	$(RUN_CMD_RANLIB)$(RANLIB) $@
 
 install: all install-bin install-hdrs install-lib install-data
 install-bin:
@@ -170,13 +170,13 @@ install-hdrs: update-revision
 	    $(INSTALL) -m 644 $(srcdir)/include/SDL_revision.h $(DESTDIR)$(includedir)/SDL2/SDL_revision.h; \
 	fi
 
-install-lib: $(objects) $(objects)/$(TARGET) $(objects)/$(SDLMAIN_TARGET) $(objects)/$(SDLTEST_TARGET)
+install-lib: $(objects) $(objects)/$(TARGET)
 	$(SHELL) $(auxdir)/mkinstalldirs $(DESTDIR)$(libdir)
 	$(LIBTOOL) --mode=install $(INSTALL) $(objects)/$(TARGET) $(DESTDIR)$(libdir)/$(TARGET)
-	$(INSTALL) -m 644 $(objects)/$(SDLMAIN_TARGET) $(DESTDIR)$(libdir)/$(SDLMAIN_TARGET)
-	$(RANLIB) $(DESTDIR)$(libdir)/$(SDLMAIN_TARGET)
-	$(INSTALL) -m 644 $(objects)/$(SDLTEST_TARGET) $(DESTDIR)$(libdir)/$(SDLTEST_TARGET)
-	$(RANLIB) $(DESTDIR)$(libdir)/$(SDLTEST_TARGET)
+	# $(INSTALL) -m 644 $(objects)/$(SDLMAIN_TARGET) $(DESTDIR)$(libdir)/$(SDLMAIN_TARGET)
+	# $(RANLIB) $(DESTDIR)$(libdir)/$(SDLMAIN_TARGET)
+	# $(INSTALL) -m 644 $(objects)/$(SDLTEST_TARGET) $(DESTDIR)$(libdir)/$(SDLTEST_TARGET)
+	# $(RANLIB) $(DESTDIR)$(libdir)/$(SDLTEST_TARGET)
 install-data:
 	$(SHELL) $(auxdir)/mkinstalldirs $(DESTDIR)$(datadir)/aclocal
 	$(INSTALL) -m 644 $(srcdir)/sdl2.m4 $(DESTDIR)$(datadir)/aclocal/sdl2.m4
@@ -197,8 +197,8 @@ uninstall-hdrs:
 	-rmdir $(DESTDIR)$(includedir)/SDL2
 uninstall-lib:
 	$(LIBTOOL) --mode=uninstall rm -f $(DESTDIR)$(libdir)/$(TARGET)
-	rm -f $(DESTDIR)$(libdir)/$(SDLMAIN_TARGET)
-	rm -f $(DESTDIR)$(libdir)/$(SDLTEST_TARGET)
+	# rm -f $(DESTDIR)$(libdir)/$(SDLMAIN_TARGET)
+	# rm -f $(DESTDIR)$(libdir)/$(SDLTEST_TARGET)
 uninstall-data:
 	rm -f $(DESTDIR)$(datadir)/aclocal/sdl2.m4
 	rm -f $(DESTDIR)$(libdir)/pkgconfig/sdl2.pc
