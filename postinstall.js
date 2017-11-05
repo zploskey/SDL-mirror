@@ -28,6 +28,7 @@ var bsconfigjson = `{
   "sources": "fake_src",
   "c-linker-flags": ["-L${__dirname}", ${platformspecificargs}],
   "allowed-build-kinds": ["bytecode", "native"],
+  "refmt": 2,
 }`;
 
 require('fs').writeFileSync(j(__dirname, 'bsconfig.json'), bsconfigjson);
