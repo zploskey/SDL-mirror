@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./configure --prefix=$(pwd) --libdir=$(pwd) --enable-assertions=disabled --disable-audio --disable-haptic --disable-joystick --disable-static --enable-fast-install --disable-power --disable-filesystem --disable-oss --disable-alsa --disable-alsatest --disable-alsa-shared --disable-esd --disable-esdtest --disable-esd-shared --disable-pulseaudio --disable-pulseaudio-shared --disable-arts --disable-arts-shared --disable-nas --disable-nas-shared --disable-sndio --disable-sndio-shared --disable-diskaudio --disable-dummyaudio --disable-fusionsound  && make -j 9 && make install && node postinstall.js"
+    "postinstall": "./configure --prefix=$(pwd) --libdir=$(pwd) --enable-assertions=disabled --disable-haptic --disable-joystick --enable-fast-install --disable-power --disable-filesystem --disable-oss --disable-alsatest --disable-alsa-shared --disable-esd --disable-esdtest --disable-esd-shared --disable-pulseaudio-shared --disable-arts --disable-arts-shared --disable-nas --disable-nas-shared --disable-sndio --disable-sndio-shared && make -j 9 && make install && node postinstall.js"
   },
   "keywords": [
     "sdl",
