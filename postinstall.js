@@ -33,7 +33,7 @@ if (process.platform === 'darwin'){
   zipFilename = 'sdl2-src-2.0.7.zip'
 }
 
-https.get('https://github.com/bsansouci/SDL2-mirror/releases/download/2.0.7/' + zipFilename, function(res) {
+https.get('https://github.com/bsansouci/SDL-mirror/releases/download/2.0.7/' + zipFilename, function(res) {
   if (res.statusCode === 302) {
     https.get(res.headers.location, function(res) {
       handleResponse(res);
