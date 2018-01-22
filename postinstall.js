@@ -25,12 +25,12 @@ function mkdirp(dir, cb) {
 //Download and extract/build
 var zipFilename;
 if (process.platform === 'darwin'){
-  zipFilename = 'sdl2-osx.zip'
+  zipFilename = 'sdl2-osx-2.0.7.zip'
 } else if (process.platform === 'win32'){
-  zipFilename = 'sdl2-win.zip'
+  zipFilename = 'sdl2-win-2.0.7.zip'
 } else {
   console.error("No pre-built binaries for " + process.platform + ", building from source");
-  zipFilename = 'sdl2-src.zip'
+  zipFilename = 'sdl2-src-2.0.7.zip'
 }
 
 https.get('https://github.com/bsansouci/SDL2-mirror/releases/download/2.0.7/' + zipFilename, function(res) {
@@ -123,22 +123,18 @@ if (process.platform === 'darwin') { // OSX
   // this flag to the linker, it automatically figures out what to do.
   platformspecificargs = 
     `"-framework", "CoreFoundation", "-framework", "CoreAudio", "-framework", "AudioToolbox", "-framework", "CoreVideo", "-framework", "Cocoa", "-framework", "Carbon", "-framework", "IOKit", "-lm", "-liconv", "-lobjc"`;
-} else if (process.platform === 'freebsd' 
-        || process.platform === 'linux'
-        || process.platform === 'sunos') { // Linux-ish
-  // Assume that those are installed globally
-  // Unless out of date, use 
-  // 
+} else if (process.platform === 'linux') {
+  // These may have to be installed globally?
   //   sudo apt-get install mesa-common-dev
   //   sudo apt-get install freeglut3
   //   sudo apt-get install freeglut3-dev
-  // 
-  // To install OpenGL on linux.
-  platformspecificargs = `"-lm", "-dl", "-lpthread", "-lrt"`
+  //   sudo apt-get install libpulseaudio-dev
+
+  platformspecificargs = `"-lasound", "-lm", "-ldl", -lpulse-simple -lpulse "-lpthread", "-lrt"`
 } else if (process.platform === "win32") {
   platformspecificargs = `"-lgdi32", "-lwinmm", "-limm32", "-lole32", "-loleaut32", "-lversion", "-lmingw32", "-lopengl32"`;
 } else {
-  throw new Error("Platform not support :(");
+  throw new Error("Platform not supported: " + process.platform);
 }
 
 var bsconfigjson = `{
