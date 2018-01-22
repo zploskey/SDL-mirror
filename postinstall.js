@@ -29,7 +29,7 @@ if (process.platform === 'darwin'){
 } else if (process.platform === 'win32'){
   zipFilename = 'sdl2-win-2.0.7.zip'
 } else {
-  console.error("No pre-built binaries for " + process.platform + ", building from source");
+  console.error("No pre-built binaries for " + process.platform + ", downloading source");
   zipFilename = 'sdl2-src-2.0.7.zip'
 }
 
@@ -66,7 +66,21 @@ function handleResponse(res) {
       var i = 0;
       zipfile.readEntry();
       zipfile.once("close", function(entry) {
-        fs.unlink(zipFilename, () => console.log("Unzip successful.                          "));
+        fs.unlink(zipFilename, () => {
+          console.log("Unzip successful.                          ")
+          // Build if not windows or mac
+          if (process.platform !== "darwin" && process.platform !== "win32") {
+            console.log("Building from source, will take a minute or two.");
+            exec("./configure --prefix=$(pwd) --libdir=$(pwd) --enable-assertions=disabled --disable-haptic --disable-shared --disable-joystick --enable-fast-install --disable-power --disable-filesystem --disable-oss --disable-alsatest --disable-esd --disable-esdtest --disable-esd-shared --disable-arts --disable-arts-shared --disable-nas --disable-nas-shared --disable-sndio --disable-sndio-shared && make -j 9 && make install", (error, stdout, stderr) => {
+                if (error) {
+                  console.error('Failure while building SDL2, error: ' + error);
+                  return;
+                } else {
+                  console.log('Looks like SDL2 built successfully.');
+                }
+              });
+          }
+        });
       });
       zipfile.on("entry", function(entry) {
         if (/\/$/.test(entry.fileName)) {
@@ -102,18 +116,6 @@ function handleResponse(res) {
   });
 }
 
-// Build if not windows or mac
-if (process.platform !== "darwin" && process.platform !== "win32") {
-  exec("./configure --prefix=$(pwd) --libdir=$(pwd) --enable-assertions=disabled --disable-haptic --disable-shared --disable-joystick --enable-fast-install --disable-power --disable-filesystem --disable-oss --disable-alsatest --disable-esd --disable-esdtest --disable-esd-shared --disable-arts --disable-arts-shared --disable-nas --disable-nas-shared --disable-sndio --disable-sndio-shared && make -j 9 && make install", (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Failure while building SDL2, error: ${error}`);
-        return;
-      }
-      console.log(`stdout: ${stdout}`);
-      console.log(`stderr: ${stderr}`);
-    });
-  
-}
 
 // Generate bsconfig
 var platformspecificargs = "";
