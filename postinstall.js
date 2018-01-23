@@ -134,7 +134,7 @@ if (process.platform === 'darwin') { // OSX
 
   platformspecificargs = `"-lasound", "-lm", "-ldl", "-lpulse-simple", "-lpulse", "-lpthread", "-lrt"`
 } else if (process.platform === "win32") {
-  platformspecificargs = `"-lgdi32", "-lwinmm", "-limm32", "-lole32", "-loleaut32", "-lversion", "-lmingw32", "-lopengl32"`;
+  platformspecificargs = `"-lopengl32", "-lgdi32", "-lwinmm", "-limm32", "-lole32", "-loleaut32", "-lversion", "-luuid"`;
 } else {
   throw new Error("Platform not supported: " + process.platform);
 }
