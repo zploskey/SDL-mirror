@@ -71,7 +71,7 @@ function handleResponse(res) {
           // Build if not windows or mac
           if (process.platform !== "darwin" && process.platform !== "win32") {
             console.log("Building from source, will take a minute or two.");
-            exec("./configure --prefix=$(pwd) --libdir=$(pwd) --enable-assertions=disabled --disable-haptic --disable-shared --disable-joystick --enable-fast-install --disable-power --disable-filesystem --disable-oss --disable-alsatest --disable-esd --disable-esdtest --disable-esd-shared --disable-arts --disable-arts-shared --disable-nas --disable-nas-shared --disable-sndio --disable-sndio-shared && make -j 9 && make install", (error, stdout, stderr) => {
+            exec("./configure --prefix=$(pwd) --libdir=$(pwd) --enable-assertions=disabled --disable-haptic --disable-shared --disable-joystick --enable-fast-install --disable-power --disable-filesystem --disable-oss --disable-alsatest --disable-esd --disable-esdtest --disable-esd-shared --disable-arts --disable-arts-shared --disable-nas --disable-nas-shared --disable-sndio --disable-sndio-shared --disable-video-mir && make -j 9 && make install", (error, stdout, stderr) => {
                 if (error) {
                   console.error('Failure while building SDL2, error: ' + error);
                   return;
