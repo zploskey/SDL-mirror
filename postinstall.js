@@ -132,7 +132,7 @@ if (process.platform === 'darwin') { // OSX
   //   sudo apt-get install freeglut3-dev
   //   sudo apt-get install libpulseaudio-dev
 
-  platformspecificargs = `"-lasound", "-lm", "-ldl", "-lpthread", "-lrt"`
+  platformspecificargs = `"-lm", "-ldl", "-lpthread", "-lrt"`
 } else if (process.platform === "win32") {
   platformspecificargs = `"-lopengl32", "-lgdi32", "-lwinmm", "-limm32", "-lole32", "-loleaut32", "-lversion", "-luuid"`;
 } else {
